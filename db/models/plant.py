@@ -1,12 +1,11 @@
 from sqlalchemy import Column, Integer, String
+from db.models.base import BaseModel
 
-from base import Base
 
-
-class Plants(Base):
+class PlantDB(BaseModel):
     __tablename__ = "plants"
 
-    id = Column(Integer, primary_key=True)
+    id = (Column (Integer, primary_key=True))
     common_name = Column(String, index=True)
     genus = Column(String)
     family_name = Column(String)

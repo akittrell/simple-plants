@@ -4,11 +4,13 @@ version = "0.1.0"
 description = ""
 authors = ["Andrew Kittrell <a.r.kittrell@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = {extras = ["standard"], version = "^0.115.0"}
 sqlalchemy = "^2.0.35"
+psycopg2 = "^2.9.9"
 
 
 [build-system]
