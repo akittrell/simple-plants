@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 
-from models.plant import Plant
+from models.plant import Plant, PlantCreate
 from db.models.base import SessionLocal
 import queries.query_plants as query
 
@@ -21,3 +21,12 @@ def get_plant(plant_id: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Plant does not exist")
     return plant
 
+@app.post("/plants", response_model=Plant)
+def create_plant(new_plant: PlantCreate, db: Session = Depends(get_db)):
+    plant = query.create_plant(db, new_plant)
+    return plant
+
+
+@app.delete("/plants/{plant_id}")
+def delete_plant(plant_id: str, db: Session = Depends(get_db)):
+    query.delete_plant(db, plant_id)

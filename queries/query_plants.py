@@ -1,3 +1,4 @@
+from sqlalchemy import delete
 from sqlalchemy.orm import Session
 from models.plant import PlantCreate
 from db.models.plant import PlantDB
@@ -23,7 +24,8 @@ def update_plant(db: Session):
     pass
 
 def delete_plant(db: Session, plant_id: str):
-    pass
+    db.query(PlantDB).filter(PlantDB.id==plant_id).delete()
+    db.commit()
 
 def list_plants(db: Session):
     # Probably assign this to a user eventually rather than just listing
